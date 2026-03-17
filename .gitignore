@@ -1,0 +1,9 @@
+# install local package
+node_modules
+
+# environment files
+support/environment/.env.*
+
+# result data
+integration
+playwright-report
