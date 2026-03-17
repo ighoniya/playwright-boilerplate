@@ -7,3 +7,4 @@ support/environment/.env.*
 # result data
 integration
 playwright-report
+test-results
