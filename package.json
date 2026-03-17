@@ -1,0 +1,32 @@
+{
+  "name": "playwright-boilerplate",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "bddgen": "bddgen && rsync -av integration/tests/ integration/ && rm -rf integration/tests && rsync -av --include='**/' --include='*.spec.ts' --exclude='*' tests/ integration/ && node support/helper/make-serial.js",
+    "test": "npm run bddgen && playwright test",
+    "test:ui": "npm run bddgen && playwright test --ui",
+    "test:ui-stag": "ENV=staging npm run bddgen && playwright test --ui",
+    "test:ui-prod": "ENV=production npm run bddgen && playwright test --ui",
+    "report": "playwright show-report",
+    "test:report": "npm test && npm run report",
+    "record": "playwright codegen ${BASE_URL:-https://www.saucedemo.com}"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/ajv": "^1.0.4",
+    "@types/node": "^25.0.9",
+    "dotenv": "^17.2.3"
+  },
+  "dependencies": {
+    "@types/mysql": "^2.15.27",
+    "ajv": "^8.18.0",
+    "ajv-formats": "^3.0.1",
+    "mysql": "^2.18.1",
+    "playwright-bdd": "^8.4.2"
+  }
+}
