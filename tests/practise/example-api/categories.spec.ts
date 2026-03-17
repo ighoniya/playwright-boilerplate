@@ -6,7 +6,7 @@ import { categoriesSchema } from "../../../support/schema/practise/categories";
 const ajv = new Ajv();
 addFormats(ajv);
 
-test.describe("Biller Categories API", { tag: ["@sequence"] }, () => {
+test.describe("Biller Categories API", () => {
   const BASE_URL = process.env.PRACTISE_BASE_URL;
   const API_KEY = process.env.PRACTISE_API_KEY;
 
