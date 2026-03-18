@@ -1,0 +1,3 @@
+{
+  "exclude": ["tests/saucedemo/example-exclude/login.feature"]
+}
