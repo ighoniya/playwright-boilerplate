@@ -102,6 +102,39 @@ Feature: Login with sequence
 
 ---
 
+## Excluding Tests by Environment
+
+Exclude tests from running in specific environments by configuring exclusion patterns in `support/exclude/{env}/`:
+
+```json
+{
+  "exclude": [
+    "tests/saucedemo/example-exclude/login.feature",
+    "tests/practise/**"
+  ]
+}
+```
+
+### Patterns
+
+| Pattern | Excludes |
+|---------|----------|
+| `tests/saucedemo/login.feature` | Specific file |
+| `tests/saucedemo/example-parallel` | All files in folder |
+| `tests/practise/**` | All files recursively |
+| `tests/**` | All tests |
+
+Supported files: `.feature` and `.ts` (including `.spec.ts`)
+
+### Usage
+
+```bash
+ENV=staging npm run bddgen    # Uses staging exclusions
+ENV=production npm run bddgen # Uses production exclusions
+```
+
+---
+
 ## @sequence Tag Behavior
 
 The `@sequence` tag controls how scenarios in a feature file execute:
