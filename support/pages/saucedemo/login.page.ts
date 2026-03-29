@@ -1,5 +1,6 @@
 import { Page, expect } from "@playwright/test";
 import { getText } from "../../helper/locales";
+import { getEnv } from "../../helper/env";
 
 const project = "saucedemo";
 const page = "login_page";
@@ -19,7 +20,7 @@ export class LoginPage {
   }
 
   async navigate(path: string = "") {
-    const baseURL = process.env.SAUCE_BASE_URL;
+    const baseURL = getEnv("SAUCE_BASE_URL");
     await this.page.goto(`${baseURL}/${path}`);
   }
 

@@ -2,7 +2,7 @@
 node_modules
 
 # environment files
-support/environment/.env.*
+support/environment/.env.*.yaml
 
 # result data
 integration

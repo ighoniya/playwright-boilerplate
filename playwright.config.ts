@@ -1,20 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
 import { defineBddConfig } from "playwright-bdd";
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-import dotenv from "dotenv";
-import path from "path";
-
-// Load environment-specific .env file
-const environment = process.env.ENV;
-const envFile = environment
-  ? `support/environment/.env.${environment}`
-  : "support/environment/.env";
-dotenv.config({ path: path.resolve(__dirname, envFile) });
-
 defineBddConfig({
   features: "tests/**/*.feature",
   steps: "support/step_definitions/**/*.ts",

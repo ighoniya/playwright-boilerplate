@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { DatabaseQueries } from "../../../support/pages/saucedemo/database.queries";
+import { getEnv } from "../../../support/helper/env";
 
 const project = "saucedemo";
 
@@ -7,8 +8,8 @@ test.describe("Database Connection", () => {
   let dbQueries: DatabaseQueries;
 
   test.beforeAll(() => {
-    // Initialize database queries with staging environment
-    dbQueries = new DatabaseQueries(process.env.ENVIRONMENT, project);
+    // Initialize database queries with environment from YAML config
+    dbQueries = new DatabaseQueries(getEnv("ENVIRONMENT"), project);
   });
 
   test("Test Connection", async () => {

@@ -19,8 +19,9 @@
   "devDependencies": {
     "@playwright/test": "^1.57.0",
     "@types/ajv": "^1.0.4",
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "^25.0.9",
-    "dotenv": "^17.2.3"
+    "js-yaml": "^4.1.1"
   },
   "dependencies": {
     "@types/mysql": "^2.15.27",

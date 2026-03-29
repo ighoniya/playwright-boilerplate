@@ -1,9 +1,10 @@
 import fs from "fs";
 import path from "path";
+import { getEnv } from "./env";
 
 // Get the environment (staging or production)
 const getEnvironment = (): string => {
-  return process.env.ENV || "staging";
+  return getEnv("ENVIRONMENT", "staging");
 };
 
 // Load credentials from the appropriate environment folder
