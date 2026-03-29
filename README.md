@@ -20,15 +20,28 @@ Install these extensions for better productivity:
 
 ---
 
-## Quick Start
+## Prerequisites
+
+### System Requirements
+
+- Node.js (v18 or higher)
+- npm or yarn
+
+### Installation
 
 ```bash
-# Install dependencies
+# Install npm dependencies
 npm install
 
 # Install Playwright browsers
 npx playwright install
+```
 
+---
+
+## Quick Start
+
+```bash
 # Generate BDD specs and run tests
 npm test
 
@@ -41,63 +54,23 @@ npm run report
 
 ---
 
-## Project Structure
+## Environment Configuration
 
-```
-playwright-boilerplate/
-├── tests/{project}/              # BDD feature files
-├── support/
-│   ├── pages/{project}/          # Page Object Models ({page}.page.ts)
-│   ├── step_definitions/{project}/ # Step definitions ({page}.steps.ts)
-│   ├── language/{en,id}.json     # Translations
-│   ├── fixtures/credentials/{env}/ # Test data (gitignored)
-│   └── fixtures/                 # Upload files
-└── integration/                  # Generated specs
-```
+Available environments:
 
----
+- `staging` - For staging environment testing
+- `production` - For production environment testing
 
-## Test Commands
-
-| Command | Description |
-|---------|-------------|
-| `npm test` | Run all tests |
-| `npm run test:ui` | Run tests with UI mode |
-| `npm run test:ui-stag` | UI mode on staging |
-| `npm run test:ui-prod` | UI mode on production |
-| `npm run report` | View HTML report |
-| `npm run test:report` | Run tests + open report |
-| `npm run record` | Start Playwright codegen |
-
-**Environment switching:**
 ```bash
-ENV=staging npm test       # Uses .env.staging
-ENV=production npm test    # Uses .env.production
-```
+# Use staging environment
+ENV=staging npm test
 
----
+# Use production environment
+ENV=production npm test
 
-## Workflow
-
-1. **Write feature file** in `tests/{project}/{feature}.feature`
-2. **Create page object** in `support/pages/{project}/{page}.page.ts`
-3. **Implement steps** in `support/step_definitions/{project}/{page}.steps.ts`
-4. **Generate specs:** `npm run bddgen`
-5. **Run tests:** `npm test`
-
----
-
-## Example Feature File
-
-```gherkin
-@sequence
-Feature: Login with sequence
-
-  Scenario: User logs in with valid credentials on Saucedemo
-    Given I navigate to the login page of Saucedemo
-    Then the login page of Saucedemo is displayed
-    When I log in with the "main" account on Saucedemo
-    Then I am redirected to the inventory page of Saucedemo
+# UI mode with environment
+ENV=staging npm run test:ui
+ENV=production npm run test:ui
 ```
 
 ---
@@ -173,7 +146,9 @@ After running tests, use `npm run report` to view:
 
 ## Documentation
 
-For complete standardization guide, conventions, and examples, see **[CLAUDE.md](./CLAUDE.md)**
+- [Playwright Documentation](https://playwright.dev)
+- [Cucumber Gherkin Syntax](https://cucumber.io/docs/gherkin/)
+- [Playwright BDD Cucumber](https://cucumber.io/docs/installation/javascript/)
 
 ---
 
