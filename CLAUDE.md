@@ -15,7 +15,7 @@
 **Pattern:** `{project}.{page_name}.{element}` (page uses underscore)
 
 ```json
-{ "saucedemo": { "login_page": { "title": "Swag Labs" } } }
+{ "saucedemo": { "login_page": { "title": "Swag Labs" } }
 ```
 
 **Usage:** `getText('saucedemo', 'login_page', 'title')`
@@ -69,7 +69,7 @@ When(
 **Structure:** `support/fixtures/credentials/{env}/{type}.json`
 
 ```json
-{ "saucedemo": { "main": { "username": "...", "password": "***" } } }
+{ "saucedemo": { "main": { "username": "...", "password": "***" } }
 ```
 
 **Usage:** `getUserCredentials(project, userKey)` → `{ username, password }`
