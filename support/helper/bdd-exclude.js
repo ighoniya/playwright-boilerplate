@@ -10,65 +10,18 @@ const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");
 const { minimatch } = require("minimatch");
-const dotenv = require("dotenv");
+const { getEnv } = require("./env.cjs");
 
 const PROJECT_ROOT = path.join(__dirname, "../../");
 const TEMP_EXCLUDED_DIR = path.join(PROJECT_ROOT, ".bddgen-excluded");
 const TESTS_DIR = path.join(PROJECT_ROOT, "tests");
-const ENV_DIR = path.join(PROJECT_ROOT, "support/environment");
 
 /**
- * Get environment config path based on ENV variable
- */
-function getEnvPath() {
-  // First check if ENV is set via environment variable (e.g., ENV=staging npm run bddgen)
-  const envFromArgs = process.env.ENV || process.env.ENVIRONMENT;
-
-  if (envFromArgs) {
-    const envPath = path.join(ENV_DIR, `.env.${envFromArgs}`);
-    if (fs.existsSync(envPath)) {
-      return envPath;
-    }
-  }
-
-  // Default to base .env file
-  const defaultEnvPath = path.join(ENV_DIR, ".env");
-  if (fs.existsSync(defaultEnvPath)) {
-    return defaultEnvPath;
-  }
-
-  return null;
-}
-
-/**
- * Load and parse .env file using dotenv
- */
-function loadDotenv() {
-  const envPath = getEnvPath();
-  if (envPath) {
-    console.log(
-      `Loading environment from: ${path.relative(PROJECT_ROOT, envPath)}`,
-    );
-    dotenv.config({ path: envPath });
-  } else {
-    console.log("No .env file found, using system environment");
-  }
-}
-
-/**
- * Get current environment from loaded dotenv
- * First checks process.env.ENV, then process.env.ENVIRONMENT, then defaults to 'default'
+ * Get current environment using getEnv helper
+ * Checks ENVIRONMENT variable, defaults to 'staging'
  */
 function getEnvironment() {
-  // First try ENV (from .env files or command line)
-  if (process.env.ENV) {
-    return process.env.ENV;
-  }
-  // Then try ENVIRONMENT (from base .env file)
-  if (process.env.ENVIRONMENT) {
-    return process.env.ENVIRONMENT;
-  }
-  return "default";
+  return getEnv("ENVIRONMENT", "staging");
 }
 
 /**
@@ -373,9 +326,6 @@ function removeExcludedSpecFilesFromIntegration(excludedFiles) {
  * Main execution
  */
 function main() {
-  // Load environment from .env file first
-  loadDotenv();
-
   const env = getEnvironment();
   console.log(`\n=== BDD Gen Wrapper (Environment: ${env}) ===\n`);
 
